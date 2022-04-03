@@ -19,9 +19,15 @@ class MovieCell : UITableViewCell {
         descriptionValue.text = movie.description
         descriptionValue.numberOfLines = 0
         rating.text = String(movie.rating)
-        let url = URL(string: movie.logo)
-        let data = try? Data(contentsOf: url!)
-        let uiImage = UIImage(data: data!)
-        logo = UIImageView(image: uiImage)
+        
+        if let url = URL(string: movie.logo) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.logo.image = UIImage(data: data)
+                    }
+                }
+            }
+        }
     }
 }

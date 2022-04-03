@@ -12,6 +12,7 @@ struct Movie{
     var description: String!
     var rating: Double!
     var logo: String!
+    var isLiked: Bool!
 }
 
 class ViewController: UIViewController, UITableViewDataSource {
@@ -43,7 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                     if let cards = result["cards"] as? [[String : Any]]{
                         for value in cards {
                             if let val = value["content"] as? [String : Any]{
-                                movieData.append(Movie(name: val["title"] as? String, description: val["description"] as? String, rating: val["rating"] as? Double, logo: val["movie_logo"] as? String))
+                                movieData.append(Movie(name: val["title"] as? String, description: val["description"] as? String, rating: val["rating"] as? Double, logo: val["movie_logo"] as? String, isLiked: false))
                             }
                         }
                     }

@@ -15,13 +15,14 @@ struct Movie{
     var isLiked: Bool!
 }
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var movieList = [Movie]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
         
         fetchMovieData(url: "https://tw-mobile-hiring.web.app/interview_ios.json") { movieData in
             DispatchQueue.main.async {
@@ -52,6 +53,13 @@ class ViewController: UIViewController, UITableViewDataSource {
             }
             completion(movieData)
         }.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        detailsViewController.movieName = movieList[indexPath.row].name
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

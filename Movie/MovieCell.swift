@@ -13,18 +13,17 @@ class MovieCell : UITableViewCell {
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var isLiked: UIButton!
-    var isLikedValue: Bool!
+    var actionBlock: ((UIButton) -> Void)? = nil
     
-    @IBAction func isLikedPressed(_ sender: Any) {
-        isLikedValue.toggle()
-        isLiked.setImage(UIImage(systemName: isLikedValue ? "star.fill" : "star"), for: .normal)
+    @IBAction func isLikedPressed(_ sender: UIButton) {
+        actionBlock?(sender)
     }
     
     func setContent(movie : Movie) {
         setMovieName(movieName: movie.name)
         setMovieDescription(movieDescription: movie.description)
         setMovieRating(movieRating: String(movie.rating!))
-        setLikedMovie(isLikedMovie: movie.isLiked)
+        setLikedMovie()
         setMovieLogo(movieLogoURL: movie.logo)
     }
     
@@ -54,9 +53,8 @@ class MovieCell : UITableViewCell {
         }
     }
     
-    func setLikedMovie(isLikedMovie: Bool) {
-        isLikedValue = isLikedMovie
-        isLiked.setImage(UIImage(systemName: isLikedValue ? "star.fill" : "star"), for: .normal)
+    func setLikedMovie() {
+        isLiked.setImage(UIImage(systemName: "star"), for: .normal)
         isLiked.configuration?.title = ""
         isLiked.tintColor = .orange
     }

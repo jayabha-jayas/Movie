@@ -15,7 +15,14 @@ struct Movie{
     var isLiked: Bool!
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailsViewControllerProtocol {
+    func callViewController(isLiked: Bool, rowNumber: Int) {
+        movieList[rowNumber].isLiked = isLiked
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     var movieList = [Movie]()
     
@@ -59,17 +66,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let detailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         detailsViewController.movieName = movieList[indexPath.row].name
+        detailsViewController.isLiked = movieList[indexPath.row].isLiked
+        detailsViewController.rowNumber = indexPath.row
+        detailsViewController.delegate = self
         self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieList.count
     }
-        
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellIdentifier") as! MovieCell
         let movie = movieList[indexPath.row]
         cell.setContent(movie: movie)
+        cell.isLiked.setImage(UIImage(systemName: movieList[indexPath.row].isLiked ? "star.fill" : "star"), for: .normal)
+        cell.actionBlock = { sender in
+            self.movieList[indexPath.row].isLiked.toggle()
+            let isLikedValue = self.movieList[indexPath.row].isLiked
+            sender.setImage(UIImage(systemName: isLikedValue! ? "star.fill" : "star"), for: .normal)
+        }
         return cell
     }
 }

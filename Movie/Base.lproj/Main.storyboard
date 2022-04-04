@@ -27,7 +27,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,21 +140,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-AT-hnD">
-                                <rect key="frame" x="172" y="407" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-AT-hnD">
+                                <rect key="frame" x="186" y="442.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87r-XE-dS4">
+                                <rect key="frame" x="147" y="511" width="120" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Like/Dislike">
+                                    <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tapButton:" destination="MV8-rM-abU" eventType="touchUpInside" id="RxY-AH-3nt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="APa-GJ-qTO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="87r-XE-dS4" firstAttribute="centerX" secondItem="Vn7-AT-hnD" secondAttribute="centerX" id="6TV-Kk-fob"/>
+                            <constraint firstItem="87r-XE-dS4" firstAttribute="top" secondItem="Vn7-AT-hnD" secondAttribute="bottom" constant="47.5" id="KdI-b5-NIk"/>
                             <constraint firstItem="Vn7-AT-hnD" firstAttribute="centerY" secondItem="APa-GJ-qTO" secondAttribute="centerY" id="ZI1-dn-fyY"/>
                             <constraint firstItem="Vn7-AT-hnD" firstAttribute="centerX" secondItem="APa-GJ-qTO" secondAttribute="centerX" id="sXf-uC-oTV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="isLikeButton" destination="87r-XE-dS4" id="d95-os-SqT"/>
                         <outlet property="movieLabel" destination="Vn7-AT-hnD" id="mDp-y4-rmb"/>
                     </connections>
                 </viewController>
@@ -164,8 +177,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

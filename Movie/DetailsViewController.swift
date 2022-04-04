@@ -7,27 +7,28 @@
 
 import UIKit
 
+protocol DetailsViewControllerProtocol {
+    func callViewController(isLiked: Bool, rowNumber: Int)
+}
+
 class DetailsViewController: UIViewController {
 
     @IBOutlet weak var movieLabel: UILabel!
+    @IBOutlet weak var isLikeButton: UIButton!
     var movieName: String?
+    var isLiked: Bool?
+    var delegate: DetailsViewControllerProtocol?
+    var rowNumber: Int?
+    
+    @IBAction func tapButton(_ sender: UIButton) {
+        isLiked!.toggle()
+        sender.setImage(UIImage(systemName: isLiked! ? "star.fill" : "star"), for: .normal)
+        delegate?.callViewController(isLiked: isLiked!, rowNumber: rowNumber!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         movieLabel.text = movieName
+        isLikeButton.setImage(UIImage(systemName: isLiked! ? "star.fill" : "star"), for: .normal)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

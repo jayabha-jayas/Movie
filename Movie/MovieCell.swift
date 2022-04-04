@@ -47,9 +47,14 @@ class MovieCell : UITableViewCell {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
                         self.logo.image = UIImage(data: data)
+                        if self.logo.image == nil {
+                            self.logo.image = UIImage(named: "MoviePoster/defaultPoster")
+                        }
                     }
                 }
             }
+        } else {
+            logo.image = UIImage(named: "MoviePoster/defaultPoster")
         }
     }
 

@@ -32,6 +32,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
 
+        movieList.append(Movie(name: "Dummy movie", description: "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse. In 1971, Carolyn and Roger Perron move their family into a dilapidated Rhode Island farm house and soon strange things start happening around it with escalating nightmarish terror.", rating: 7.7, logo: "", isLiked: false))
+
         fetchMovieData(url: "https://tw-mobile-hiring.web.app/interview_ios.json") { movieData in
             DispatchQueue.main.async {
                 self.movieList.append(contentsOf: movieData)
@@ -47,13 +49,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let urlSession = URLSession(configuration: URLSessionConfiguration.default)
 
         urlSession.dataTask(with: urlRequest) { data, response, error in
-            let json = try? JSONSerialization.jsonObject(with: data!, options: .json5Allowed) as? [String : Any]
-            if let json = json {
-                if let result = json["data"] as? [String : Any]{
-                    if let cards = result["cards"] as? [[String : Any]]{
-                        for value in cards {
-                            if let val = value["content"] as? [String : Any]{
-                                movieData.append(Movie(name: val["title"] as? String, description: val["description"] as? String, rating: val["rating"] as? Double, logo: val["movie_logo"] as? String, isLiked: false))
+            if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: .json5Allowed) as? [String : Any]
+                if let json = json {
+                    if let result = json["data"] as? [String : Any]{
+                        if let cards = result["cards"] as? [[String : Any]]{
+                            for value in cards {
+                                if let val = value["content"] as? [String : Any]{
+                                    movieData.append(Movie(name: val["title"] as? String, description: val["description"] as? String, rating: val["rating"] as? Double, logo: val["movie_logo"] as? String, isLiked: false))
+                                }
                             }
                         }
                     }
@@ -68,6 +72,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let detailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         detailsViewController.movieName = movieList[indexPath.row].name
         detailsViewController.movieDescriptionValue = movieList[indexPath.row].description
+        detailsViewController.movieURL = movieList[indexPath.row].logo
+        detailsViewController.movieRatingValue = movieList[indexPath.row].rating
         detailsViewController.isLiked = movieList[indexPath.row].isLiked
         detailsViewController.rowNumber = indexPath.row
         detailsViewController.delegate = self

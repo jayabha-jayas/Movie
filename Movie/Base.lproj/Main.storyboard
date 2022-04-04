@@ -140,14 +140,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-AT-hnD">
-                                <rect key="frame" x="186" y="442.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MovieName" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-AT-hnD">
+                                <rect key="frame" x="50" y="272" width="314" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="4dQ-Yq-MNL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87r-XE-dS4">
-                                <rect key="frame" x="147" y="511" width="120" height="31"/>
+                                <rect key="frame" x="274" y="74" width="120" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Like/Dislike">
                                     <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
@@ -156,18 +159,40 @@
                                     <action selector="tapButton:" destination="MV8-rM-abU" eventType="touchUpInside" id="RxY-AH-3nt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mse-GS-gGC">
+                                <rect key="frame" x="50" y="352" width="314" height="460"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="agJ-Zc-5wC">
+                                <rect key="frame" x="100" y="114" width="214" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Vh8-cV-nQ2"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="APa-GJ-qTO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="87r-XE-dS4" firstAttribute="centerX" secondItem="Vn7-AT-hnD" secondAttribute="centerX" id="6TV-Kk-fob"/>
-                            <constraint firstItem="87r-XE-dS4" firstAttribute="top" secondItem="Vn7-AT-hnD" secondAttribute="bottom" constant="47.5" id="KdI-b5-NIk"/>
-                            <constraint firstItem="Vn7-AT-hnD" firstAttribute="centerY" secondItem="APa-GJ-qTO" secondAttribute="centerY" id="ZI1-dn-fyY"/>
-                            <constraint firstItem="Vn7-AT-hnD" firstAttribute="centerX" secondItem="APa-GJ-qTO" secondAttribute="centerX" id="sXf-uC-oTV"/>
+                            <constraint firstItem="Vn7-AT-hnD" firstAttribute="top" secondItem="agJ-Zc-5wC" secondAttribute="bottom" constant="30" id="1p5-q7-mga"/>
+                            <constraint firstItem="APa-GJ-qTO" firstAttribute="trailing" secondItem="87r-XE-dS4" secondAttribute="trailing" constant="20" id="99q-DY-Nal"/>
+                            <constraint firstItem="87r-XE-dS4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="APa-GJ-qTO" secondAttribute="leading" symbolic="YES" id="9UM-Wc-ji1"/>
+                            <constraint firstItem="agJ-Zc-5wC" firstAttribute="top" secondItem="APa-GJ-qTO" secondAttribute="top" constant="70" id="GoG-Hr-8pn"/>
+                            <constraint firstItem="87r-XE-dS4" firstAttribute="top" secondItem="APa-GJ-qTO" secondAttribute="top" constant="30" id="QM4-pU-43k"/>
+                            <constraint firstItem="Mse-GS-gGC" firstAttribute="top" secondItem="Vn7-AT-hnD" secondAttribute="bottom" constant="10" id="Wpa-Sh-vib"/>
+                            <constraint firstItem="Vn7-AT-hnD" firstAttribute="leading" secondItem="APa-GJ-qTO" secondAttribute="leading" constant="50" id="XA4-mj-brY"/>
+                            <constraint firstItem="APa-GJ-qTO" firstAttribute="trailing" secondItem="Vn7-AT-hnD" secondAttribute="trailing" constant="50" id="ZSR-Lf-oD9"/>
+                            <constraint firstItem="agJ-Zc-5wC" firstAttribute="leading" secondItem="APa-GJ-qTO" secondAttribute="leading" constant="100" id="huZ-ZP-XHB"/>
+                            <constraint firstItem="APa-GJ-qTO" firstAttribute="trailing" secondItem="Mse-GS-gGC" secondAttribute="trailing" constant="50" id="iYh-Po-T0X"/>
+                            <constraint firstItem="Mse-GS-gGC" firstAttribute="leading" secondItem="APa-GJ-qTO" secondAttribute="leading" constant="50" id="vag-oe-eh7"/>
+                            <constraint firstItem="APa-GJ-qTO" firstAttribute="bottom" secondItem="Mse-GS-gGC" secondAttribute="bottom" constant="50" id="vkr-rd-cuP"/>
+                            <constraint firstItem="APa-GJ-qTO" firstAttribute="trailing" secondItem="agJ-Zc-5wC" secondAttribute="trailing" constant="100" id="wTx-9I-57f"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="isLikeButton" destination="87r-XE-dS4" id="d95-os-SqT"/>
+                        <outlet property="movieDescription" destination="Mse-GS-gGC" id="QKD-yO-ws0"/>
                         <outlet property="movieLabel" destination="Vn7-AT-hnD" id="mDp-y4-rmb"/>
                     </connections>
                 </viewController>

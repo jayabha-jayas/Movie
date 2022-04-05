@@ -18,7 +18,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var movieDescription: UILabel!
     @IBOutlet weak var movieRating: UILabel!
-    
+
     var movieName: String?
     var movieDescriptionValue: String?
     var movieURL: String?
